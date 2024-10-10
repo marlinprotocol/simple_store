@@ -55,7 +55,10 @@ async fn store_payload(
 
     match result {
         Ok(_) => HttpResponse::Ok().json(StoreResponse { id }),
-        Err(err) => HttpResponse::InternalServerError().body(err.to_string()),
+        Err(err) => {
+            log::error!("{}", err.to_string());
+            HttpResponse::InternalServerError().body(err.to_string())
+        }
     }
 }
 
