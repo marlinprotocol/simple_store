@@ -11,7 +11,7 @@ struct PayloadData {
 
 #[derive(Serialize)]
 struct StoreResponse {
-    id: Uuid,
+    id: String,
 }
 
 #[derive(Serialize)]
@@ -54,7 +54,7 @@ async fn store_payload(
         .await;
 
     match result {
-        Ok(_) => HttpResponse::Ok().json(StoreResponse { id }),
+        Ok(_) => HttpResponse::Ok().json(StoreResponse { id: id.to_string() }),
         Err(err) => {
             log::error!("{}", err.to_string());
             HttpResponse::InternalServerError().body(err.to_string())
