@@ -25,7 +25,7 @@ async fn init_db(client: &tokio_postgres::Client) -> Result<(), tokio_postgres::
         .batch_execute(
             "
         CREATE TABLE IF NOT EXISTS payloads (
-            id UUID PRIMARY KEY,
+            id VARCHAR(36) PRIMARY KEY,
             payload TEXT NOT NULL,
             created_at TIMESTAMP NOT NULL
         );
