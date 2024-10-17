@@ -29,7 +29,7 @@ async fn init_db(client: &tokio_postgres::Client) -> Result<(), tokio_postgres::
             payload TEXT NOT NULL,
             created_at TIMESTAMP NOT NULL
         );
-        DELETE FROM payloads WHERE created_at < NOW() - INTERVAL '4 hours';
+        DELETE FROM payloads WHERE created_at < NOW() - INTERVAL '720 hours';
     ",
         )
         .await?;
